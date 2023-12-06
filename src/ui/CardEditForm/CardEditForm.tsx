@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import Card from '../Card/Card';
-import { CardListContainer, ListContainer } from './List.style';
 import { CardType } from '../../utils/Types';
 import useGetCustomFetch from '../../hooks/useGetCustomFetch';
 import requestUrls from '../../backend/requestUrls';
+import { CardListContainer, ListContainer } from '../../components/List/List.style';
+import Card from '../../components/Card/Card';
 
-const List: React.FC = () => {
+const CardEditForm = () => {
     const [cardData, setCardData] = useState<CardType[] | null>(null);
     const { fetcher: cardFetcher, response: cardResponse } = useGetCustomFetch<CardType[], boolean>(requestUrls.card);
 
@@ -14,14 +14,13 @@ const List: React.FC = () => {
     }, []);
 
     useEffect(() => {
-        setCardData(cardResponse?.filter(card => !card.isHidden) || null);
+        setCardData(cardResponse);
     }, [cardResponse]);
-
     return (
         <ListContainer>
-            <CardListContainer>{cardData && cardData.map(card => <Card key={card.id} {...card} />)}</CardListContainer>
+            <CardListContainer>{cardData?.map(card => <Card key={card.id} {...card} />)}</CardListContainer>
         </ListContainer>
     );
 };
 
-export default List;
+export default CardEditForm;

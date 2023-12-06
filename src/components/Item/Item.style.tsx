@@ -34,7 +34,7 @@ export const CardContent = styled(motion.div)`
         max-height: 100%;
         max-width: 100%;
         grid-template-columns: repeat(1, 100%);
-        grid-template-rows: repeat(2, 40%);
+        grid-template-rows: repeat(2, 45%);
     }
 `;
 
@@ -101,7 +101,6 @@ export const Subtitle = styled.div`
 export const Overlay = styled(motion.div)`
     z-index: 1;
     position: fixed;
-    will-change: opacity;
     top: 0;
     bottom: 0;
     left: 50%;

@@ -16,7 +16,7 @@ export const ButtonContainer = styled.div`
     padding: 3px 25px;
     border: 2px solid white;
     border-radius: 50px;
-    font-size: 30px;
+    font-size: 2.2vw;
     font-weight: 600;
     text-decoration: none;
     text-transform: uppercase;
@@ -25,8 +25,10 @@ export const ButtonContainer = styled.div`
     overflow: hidden;
     cursor: pointer;
     margin-bottom: 12px;
+
     @media (max-width: 767px) {
         font-size: 20px;
+        position: absolute;
     }
 `;
 interface ButtonInfoProps {

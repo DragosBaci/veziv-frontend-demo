@@ -1,26 +1,21 @@
 import { useIsClickedContext } from '../../context/IsClickedContext';
 import React from 'react';
 import { CardContainer, CardContent, CardContentContainer, CardImage, CardImageContainer, TitleContainer, Category, CardOpenLink } from './Card.style';
+import { CardType } from '../../utils/Types';
 
-type CardProps = {
-    id: any;
-    title: string;
-    category: string;
-};
-
-const Card: React.FC<CardProps> = ({ id, title, category }) => {
+const Card: React.FC<CardType> = ({ id, title, subtitle, description, image, link, isHidden }) => {
     const { updateIsClicked } = useIsClickedContext();
     return (
         <CardContainer>
             <CardContentContainer>
-                <CardContent className="card-content" layoutId={`card-container-${id}`}>
+                <CardContent layoutId={`card-container-${id}`}>
                     <CardImageContainer layoutId={`card-image-container-${id}`}>
-                        <CardImage src={`images/${id}.jpg`} alt="" />
+                        <CardImage src={`http://localhost:8080/about/${image}`} alt="" />
                     </CardImageContainer>
                 </CardContent>
             </CardContentContainer>
             <CardOpenLink
-                to={id}
+                to={id.toString()}
                 onClick={() => {
                     document.body.style.overflow = 'hidden';
                     updateIsClicked(true);
