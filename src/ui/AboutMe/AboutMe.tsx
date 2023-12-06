@@ -1,24 +1,35 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { AboutText, MainContainer, SplitContainer, Subtitle, TextContainer, Title, TitleContainer } from './AboutMe.style';
 import CanvasModel from '../../components/CanvasModel/CanvasModel';
+import { AboutType } from '../../utils/Types';
+import useGetCustomFetch from '../../hooks/useGetCustomFetch';
+import requestUrls from '../../backend/requestUrls';
 
 const AboutMe: React.FC = () => {
+    const [aboutData, setAboutData] = useState<AboutType | null>(null);
+    const { fetcher: aboutFetcher, response: aboutResponse } = useGetCustomFetch<AboutType, boolean>(requestUrls.about);
+
+    useEffect(() => {
+        aboutFetcher(false);
+    }, []);
+
+    useEffect(() => {
+        setAboutData(aboutResponse);
+    }, [aboutResponse]);
+
     return (
         <MainContainer>
             <SplitContainer>
                 <TextContainer>
                     <TitleContainer>
-                        <Title>Hello, I am Dragos</Title>
-                        <Subtitle>Baci Dragos</Subtitle>
+                        <Title>{aboutData?.descriptionTitle}</Title>
+                        <Subtitle>{aboutData?.descriptionSubtitle}</Subtitle>
                     </TitleContainer>
-                    <AboutText>
-                        I use my passion and skills to create innovative and dynamic digital solutions. While also learning Automation Engineering , I bring a unique perspective and skill set to every
-                        project i work on. In my free time, I like to work out, read about philosophy and play chess.
-                    </AboutText>
+                    <AboutText>{aboutData?.description}</AboutText>
                 </TextContainer>
             </SplitContainer>
             <SplitContainer>
-                <CanvasModel />
+                <CanvasModel model={aboutData?.model} />
             </SplitContainer>
         </MainContainer>
     );

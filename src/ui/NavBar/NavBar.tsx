@@ -16,14 +16,12 @@ const NavBar: React.FC = () => {
                 <NavigationBar>
                     <LeftContainer>
                         <NavbarLinkContainer>
-                            <NavbarLink to="/"> Logo or name</NavbarLink>
+                            <NavbarLink to="/"> Baci Dragos</NavbarLink>
                         </NavbarLinkContainer>
                     </LeftContainer>
                     <RightContainer>
                         <NavbarLinkContainer>
-                            <NavbarLink to="/"> Home</NavbarLink>
-                            <NavbarLink to="/login"> Products</NavbarLink>
-                            <NavbarLink to="/contact"> Contact</NavbarLink>
+                            <NavbarLink to="/login"> Login</NavbarLink>
                         </NavbarLinkContainer>
                     </RightContainer>
                 </NavigationBar>

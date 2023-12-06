@@ -5,7 +5,6 @@ import '../../fonts/fonts.css';
 export const HomeContainer = styled.div`
     display: flex;
     height: 100vh;
-    padding-left: 15px;
     padding-right: 15px;
     @media (max-width: 767px) {
         padding: 0;
@@ -30,9 +29,7 @@ export const SplitContainerItems = styled.div`
     align-self: flex-end;
     text-align: right;
     max-width: 30%;
-    @media (max-width: 1024px) {
-        max-width: 50%;
-    }
+
     @media (max-width: 767px) {
         flex-direction: column;
         align-items: center;
@@ -49,6 +46,7 @@ export const Title = styled(motion.div)`
     margin: 0;
     line-height: 1;
     margin: 0;
+    text-transform: uppercase;
     text-align: center;
     @media (max-width: 767px) {
         font-size: 20vh;
@@ -59,11 +57,12 @@ export const Title = styled(motion.div)`
 `;
 
 export const SubTitle = styled.div`
-    padding-left: 12px;
     font-size: 2.1vw;
     font-family: Migra;
     color: #efd8b7;
     text-align: left;
+    padding-left: 1.4vw;
+
     margin: 0;
     @media (max-width: 767px) {
         font-size: 4vh;

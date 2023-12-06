@@ -1,25 +1,23 @@
 import React from 'react';
 import { useIsClickedContext } from '../../context/IsClickedContext';
 import { CardContent, CardContentContainerOpen, CardImage, CardImageContainer, ContentContainer, ContentTitle, ContentTitleContainer, Overlay, OverlayLink, Subtitle } from './Item.style';
+import SeeCaseBar from '../../ui/SeeCaseBar/SeeCaseBar';
 
 type ItemProps = {
     id: any;
+    cardData: any;
 };
 
-const Item: React.FC<ItemProps> = ({ id }) => {
+const Item: React.FC<ItemProps> = ({ id, cardData }) => {
     const { updateIsClicked } = useIsClickedContext();
 
     return (
         <>
             <Overlay
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
                 exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                transition={{ duration: 0.2, delay: 0.15 }}
                 style={{
                     pointerEvents: 'auto',
                 }}
-                className="overlay"
             >
                 <OverlayLink
                     to={'/'}
@@ -32,19 +30,17 @@ const Item: React.FC<ItemProps> = ({ id }) => {
             <CardContentContainerOpen>
                 <CardContent layoutId={`card-container-${id}`}>
                     <CardImageContainer layoutId={`card-image-container-${id}`}>
-                        <CardImage src={`images/${id}.jpg`} alt="" />
+                        <CardImage src={`http://localhost:8080/card/image/${cardData.image}`} alt="" />
                     </CardImageContainer>
-                    <ContentContainer animate>
+                    <ContentContainer>
                         <ContentTitleContainer>
-                            <ContentTitle>title</ContentTitle>
-                            <Subtitle>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores esse impedit iure nam non tempore voluptatem? Accusamus asperiores, aspernatur distinctio fugiat
-                                iste itaque maiores necessitatibus nulla praesentium quas sed, tempora.
-                            </Subtitle>
+                            <ContentTitle>{cardData.title}</ContentTitle>
+                            <Subtitle>{cardData.description}</Subtitle>
                         </ContentTitleContainer>
                     </ContentContainer>
                 </CardContent>
             </CardContentContainerOpen>
+            <SeeCaseBar link={cardData.link} />
         </>
     );
 };
