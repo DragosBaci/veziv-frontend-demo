@@ -84,7 +84,7 @@ const CardEdit: React.FC<DynamicFormProps> = ({ formData }) => {
     const [initialData, setInitialData] = useState<any>();
     const { fetcher: initialDataFetcher, response: initialDataResponse } = useGetCustomFetch(cardEditUrl);
     const { fetcher: sendPayload, response: sendResponse } = usePostCustomFetch<any, any>(cardEditUrl, 'PUT');
-
+    const { fetcher: sendDeletePayload, response: sendDeleteResponse } = usePostCustomFetch<any, any>(cardEditUrl, 'DELETE');
     const { register, handleSubmit } = useForm();
 
     const [file, setFile] = useState<File | null>(null);
@@ -118,6 +118,7 @@ const CardEdit: React.FC<DynamicFormProps> = ({ formData }) => {
     if (!formData) {
         return null;
     }
+
     return (
         <BodyWrapper>
             <FormWrapper
@@ -161,7 +162,6 @@ const CardEdit: React.FC<DynamicFormProps> = ({ formData }) => {
                             return null;
                     }
                 })}
-                <PWrapper></PWrapper>
                 <SubmitButton type="submit" />
             </FormWrapper>
         </BodyWrapper>
